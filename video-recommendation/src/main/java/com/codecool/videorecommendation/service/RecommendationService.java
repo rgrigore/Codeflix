@@ -17,4 +17,13 @@ public class RecommendationService {
     public List<Recommendation> getRecommendationsForVideo(Long videoId) {
         return repository.findAllByVideoId(videoId);
     }
+
+    public void addRecommendation(Long videoId, int rating, String comment) {
+        repository.save(Recommendation.builder()
+                .videoId(videoId)
+                .rating(rating)
+                .comment(comment)
+                .build()
+        );
+    }
 }
