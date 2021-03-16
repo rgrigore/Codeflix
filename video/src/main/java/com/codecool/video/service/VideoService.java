@@ -20,6 +20,12 @@ public class VideoService {
         return videoRepository.findAll();
     }
 
+    public Video getVideo(Long id) {
+        Video video = Video.builder().id(null).name("").url("").build();
+        videoRepository.findById(id).ifPresent(v -> {video.setId(v.getId()); video.setName(v.getName()); video.setUrl(v.getUrl());});
+        return video;
+    }
+
     //Test data
     @PostConstruct
     public void afterInit() {
