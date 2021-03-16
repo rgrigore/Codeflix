@@ -16,15 +16,20 @@ public class RecommendationController {
 
     @GetMapping("/video/{videoId}")
     public RecommendationsDTO getRecommendations(@PathVariable Long videoId) {
-        return new RecommendationsDTO(service.getRecommendationsForVideo(videoId));
+        return new RecommendationsDTO(service.getForVideo(videoId));
     }
 
     @PostMapping("/add")
     public void addRecommendation(@RequestBody RecommendationDTO recommendationDTO) {
-        service.addRecommendation(
+        service.add(
                 recommendationDTO.getVideoId(),
                 recommendationDTO.getRating(),
                 recommendationDTO.getComment()
         );
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteRecommendation(@PathVariable Long id) {
+        service.delete(id);
     }
 }

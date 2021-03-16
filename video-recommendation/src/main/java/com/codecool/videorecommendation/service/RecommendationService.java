@@ -14,16 +14,20 @@ public class RecommendationService {
 
     private final RecommendationRepository repository;
 
-    public List<Recommendation> getRecommendationsForVideo(Long videoId) {
+    public List<Recommendation> getForVideo(Long videoId) {
         return repository.findAllByVideoId(videoId);
     }
 
-    public void addRecommendation(Long videoId, int rating, String comment) {
+    public void add(Long videoId, int rating, String comment) {
         repository.save(Recommendation.builder()
                 .videoId(videoId)
                 .rating(rating)
                 .comment(comment)
                 .build()
         );
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }
