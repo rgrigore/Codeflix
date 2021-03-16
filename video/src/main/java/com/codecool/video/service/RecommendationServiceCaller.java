@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,11 +26,10 @@ public class RecommendationServiceCaller {
     private String baseUrl;
 
     public VideoRecommendationsDTO getRecommendationsForVideo(Long id) {
-        ResponseEntity<VideoRecommendationsDTO> resp = restTemplate.getForEntity(baseUrl + "/video/" + id, VideoRecommendationsDTO.class);
-        VideoRecommendationsDTO recommendations = resp.getBody();
-        assert recommendations != null;
-        log.info("Got rec. for Q " + id + " ==" + recommendations.getRecommendations().toString());
-        return recommendations;
+        VideoRecommendationsDTO resp = restTemplate.getForObject(baseUrl + "/video/" + id, VideoRecommendationsDTO.class);
+        assert resp != null;
+        log.info("Got rec. for Q " + id + " ==" + resp.getRecommendations().toString());
+        return resp;
     }
 
     public void addRecommendation(AddRecommendationDTO recommendation) {
