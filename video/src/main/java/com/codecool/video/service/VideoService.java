@@ -27,16 +27,16 @@ public class VideoService {
     }
 
     //Test data
-    @PostConstruct
-    public void afterInit() {
-        List<String> urls = new ArrayList<>();
-        urls.add("h9PKIgpb2Bs");
-        urls.add("jTN_IYDKTiE");
-        urls.add("fzBDw279rJQ");
-        urls.add("KOcAxiYwryY");
-        for(int i = 1; i < 5; i++) {
-            Video video = Video.builder().name("Video " + i).url(urls.get(i-1)).build();
-            videoRepository.save(video);
-        }
-    }
+//    @PostConstruct
+//    public void afterInit() {
+//        List<String> urls = new ArrayList<>();
+//        urls.add("h9PKIgpb2Bs");
+//        urls.add("jTN_IYDKTiE");
+//        urls.add("fzBDw279rJQ");
+//        urls.add("KOcAxiYwryY");
+//        for(int i = 1; i < 5; i++) {
+//            Video video = Video.builder().name("Video " + i).url(urls.get(i-1)).build();
+//            videoRepository.save(video);
+//        }
+//    }
 }
