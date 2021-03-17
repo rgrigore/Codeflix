@@ -2,7 +2,6 @@ package com.codecool.apigateway.controller;
 
 import com.codecool.apigateway.dto.UserCredentialsDto;
 import com.codecool.apigateway.dto.UserLoginResponseDto;
-import com.codecool.apigateway.dto.UserLoginResponseDto;
 import com.codecool.apigateway.entity.DbUser;
 import com.codecool.apigateway.repository.DbUserRepository;
 import com.codecool.apigateway.security.JwtTokenService;
@@ -34,6 +33,19 @@ public class AccountController {
         return ResponseEntity.ok("test response");
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody UserCredentialsDto form) {
+        try {
+            DbUser user = DbUser.builder().username(form.getUsername())
+                    .password(BCrypt.hashpw(form.getPassword(), BCrypt.gensalt(12)))
+                    .roles(Arrays.asList("ROLE_USER"))
+                    .build();
+            dbUserRepository.save(user);
+            return ResponseEntity.ok("Account created!");
+        } catch (Exception e) {
+            throw new BadCredentialsException("Accound could not be created!");
+        }
+    }
 
     @PostMapping("/login")
     public ResponseEntity<UserLoginResponseDto> login(@RequestBody UserCredentialsDto form) {
