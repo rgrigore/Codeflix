@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class VideoRecommendationDTO {
+public class Recommendation {
     private Long id;
     private int rating;
     private String comment;

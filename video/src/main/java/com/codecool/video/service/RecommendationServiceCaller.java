@@ -1,8 +1,9 @@
 package com.codecool.video.service;
 
 import com.codecool.video.model.AddRecommendationDTO;
-import com.codecool.video.model.VideoRecommendationDTO;
-import com.codecool.video.model.VideoRecommendationsDTO;
+import com.codecool.video.model.Recommendation;
+import com.codecool.video.model.RecommendationsDTO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,34 +12,29 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
-@Service
 @Slf4j
+@Service
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RecommendationServiceCaller {
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     @Value("${videorecommendation.url}")
     private String baseUrl;
 
-    public VideoRecommendationsDTO getRecommendationsForVideo(Long id) {
-        VideoRecommendationsDTO resp = restTemplate.getForObject(baseUrl + "/video/" + id, VideoRecommendationsDTO.class);
-        assert resp != null;
-        log.info("Got rec. for Q " + id + " ==" + resp.getRecommendations().toString());
-        return resp;
+    public List<Recommendation> getRecommendationsForVideo(Long id) {
+        Optional<RecommendationsDTO> resp = Optional.ofNullable(restTemplate.getForObject(baseUrl + "/video/" + id, RecommendationsDTO.class));
+        return resp.map(RecommendationsDTO::getRecommendations).orElse(new ArrayList<>());
     }
 
-    public void addRecommendation(AddRecommendationDTO recommendation) {
-        log.info("Add new rec. " + recommendation.toString());
-        restTemplate.postForEntity(baseUrl + "/add", recommendation, ResponseEntity.class);
+    public void add(AddRecommendationDTO recommendation, Long videoId) {
+        restTemplate.postForEntity(baseUrl + "/add", recommendation.setVideoId(videoId), ResponseEntity.class);
     }
 
-    public void deleteRecommendation(Long id) {
-        log.info("Delete rec. " + id);
+    public void delete(Long id) {
         restTemplate.delete(baseUrl + "/delete/" + id);
     }
 }

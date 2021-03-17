@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,12 +24,12 @@ class VideoServiceTest {
 
     @Test
     public void getAllVideos() {
-        assertEquals(4, videoService.getAllVideos().size());
+        assertEquals(4, videoService.getAll().size());
     }
 
     @Test
     public void getVideoById() {
-        Video video = Video.builder().id(1L).name("Video 1").url("https://www.youtube.com/watch?v=h9PKIgpb2Bs").build();
-        assertThat(videoService.getVideo(1L)).isEqualTo(video);
+        Video video = Video.builder().id(1L).title("Video 1").url("https://www.youtube.com/watch?v=h9PKIgpb2Bs").build();
+        assertThat(videoService.get(1L)).isEqualTo(Optional.of(video));
     }
 }
