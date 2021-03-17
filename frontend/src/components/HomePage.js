@@ -14,7 +14,7 @@ function HomePage() {
 
 	const getVideos = () => {
 		axios.get(
-			`${apiUrl}/netflix/videos/all`,
+			`${apiUrl}/videos/all`,
 			{headers: { Authorization: `Bearer ${userContext.jwt}` }}
 		)
 			.then(response => setVideos(response.data.videos))
