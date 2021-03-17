@@ -14,14 +14,11 @@ import java.util.List;
 
 @RestController
 @Slf4j
-//@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class VideoController {
 
-    @Autowired
-    private VideoService videoService;
-
-    @Autowired
-    private RecommendationServiceCaller recommendationServiceCaller;
+    private final VideoService videoService;
+    private final RecommendationServiceCaller recommendationServiceCaller;
 
     @GetMapping("/all")
     public List<Video> getAllVideos() {
