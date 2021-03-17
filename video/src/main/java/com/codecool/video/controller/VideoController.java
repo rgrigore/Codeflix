@@ -5,7 +5,6 @@ import com.codecool.video.model.Video;
 import com.codecool.video.model.VideoRecommendationDTO;
 import com.codecool.video.service.RecommendationServiceCaller;
 import com.codecool.video.service.VideoService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
-//@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequestMapping("/videos")
 public class VideoController {
 
     @Autowired
