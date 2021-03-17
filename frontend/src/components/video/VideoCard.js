@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
-import netflix_logo from "../../images/netflix-logo-black-and-white.png";
-
 VideoCard.propTypes = {
 	video: PropTypes.object.isRequired
 };
@@ -23,7 +21,7 @@ function VideoCard(props) {
 				<Card.Body>
 					<Card.Title>{props.video.name}</Card.Title>
 				</Card.Body>
-				<Card.Img variant={"bottom"} src={netflix_logo} style={imgStyle} />
+				<Card.Img variant={"bottom"} src={`http://img.youtube.com/vi/${props.video.url}/hqdefault.jpg`} style={imgStyle} />
 			</Card>
 		</Link>
 	);
