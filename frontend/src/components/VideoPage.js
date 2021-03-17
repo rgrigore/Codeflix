@@ -37,7 +37,9 @@ function VideoPage() {
 			        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 			        frameBorder="2" allowFullScreen />
 			<RecommendationsContainer recommendations={recommendations} />
-			<RecommendationForm videoId={id} recCallback={getVideo} />
+			{ userContext.jwt &&
+				<RecommendationForm videoId={id} recCallback={getVideo} />
+			}
 		</div>
 	);
 }

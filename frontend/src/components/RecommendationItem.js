@@ -9,7 +9,7 @@ RecommendationItem.propTypes = {
 
 function RecommendationItem(props) {
 	return (
-		<ListGroup.Item variant="info" className={"d-inline mb-2"}>
+		<ListGroup.Item variant="info" className={"d-inline mb-2"} data-rec-id={props.recommendation.id}>
 			<ListGroup horizontal className={'justify-content-center'}>
 				<ListGroup.Item variant={"info"}>"{props.recommendation.comment}"</ListGroup.Item>
 				<ListGroup.Item variant={"info"} className={''}>

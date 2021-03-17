@@ -18,7 +18,7 @@ function RecommendationForm(props) {
 
 	const postRecommendation = () => {
 		axios.post(
-			`${apiUrl}/videos/${props.videoId}/addrecommendation`,
+			`${apiUrl}/videos/${props.videoId}/recommendation/add`,
 			{
 				rating: rating,
 				comment: comment,
