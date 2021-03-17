@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { Button } from "react-bootstrap";
 
-import { UserContext } from "./UserContext"
+import { UserContext } from "../UserContext"
 import axios from "axios";
-import VideosContainer from "./VideosContainer";
+import VideosContainer from "../video/VideosContainer";
 
 const apiUrl = "http://localhost:8762";
 

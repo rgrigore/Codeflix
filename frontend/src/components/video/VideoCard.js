@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
-import netflix_logo from "../images/netflix-logo-black-and-white.png";
+import netflix_logo from "../../images/netflix-logo-black-and-white.png";
 
 VideoCard.propTypes = {
 	video: PropTypes.object.isRequired
