@@ -1,7 +1,8 @@
 package com.codecool.apigateway.controller;
 
-import com.codecool.apigateway.dto.UserCredentials;
-import com.codecool.apigateway.dto.UserLoginResponse;
+import com.codecool.apigateway.dto.UserCredentialsDto;
+import com.codecool.apigateway.dto.UserLoginResponseDto;
+import com.codecool.apigateway.dto.UserLoginResponseDto;
 import com.codecool.apigateway.entity.DbUser;
 import com.codecool.apigateway.repository.DbUserRepository;
 import com.codecool.apigateway.security.JwtTokenService;
@@ -25,8 +26,8 @@ import java.util.stream.Collectors;
 public class AccountController {
 
     private final DbUserRepository dbUserRepository;
-//    private final AuthenticationManager authenticationManager;
-//    private final JwtTokenService jwtTokenService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenService jwtTokenService;
 
     @GetMapping("/test")
     public ResponseEntity<String> test() {
@@ -35,7 +36,7 @@ public class AccountController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<UserLoginResponse> login(@RequestBody UserCredentials form) {
+    public ResponseEntity<UserLoginResponseDto> login(@RequestBody UserCredentialsDto form) {
         try {
             String username = form.getUsername();
 
@@ -49,7 +50,7 @@ public class AccountController {
                     .collect(Collectors.toList());
             String token = jwtTokenService.createToken(username, roles);
 
-            UserLoginResponse response = UserLoginResponse.builder()
+            UserLoginResponseDto response = UserLoginResponseDto.builder()
                     .username(username)
                     .roles(roles)
                     .token(token)
