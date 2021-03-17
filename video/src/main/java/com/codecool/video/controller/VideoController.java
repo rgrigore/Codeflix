@@ -1,8 +1,6 @@
 package com.codecool.video.controller;
 
-import com.codecool.video.model.AddRecommendationDTO;
-import com.codecool.video.model.Video;
-import com.codecool.video.model.VideoRecommendationDTO;
+import com.codecool.video.model.*;
 import com.codecool.video.service.RecommendationServiceCaller;
 import com.codecool.video.service.VideoService;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@Slf4j
 @RestController
 @Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -21,28 +18,32 @@ public class VideoController {
     private final RecommendationServiceCaller recommendationServiceCaller;
 
     @GetMapping("/all")
-    public List<Video> getAllVideos() {
-        return videoService.getAllVideos();
+    public VideosListDTO getAllVideos() {
+        return new VideosListDTO(videoService.getAll());
     }
 
     @GetMapping("/{id}")
-    public Video getVideo(@PathVariable String id) {
-        return videoService.getVideo(Long.parseLong(id));
+    public VideoDTO getVideo(@PathVariable Long id) {
+        return videoService.getVideoDTO(id);
     }
 
-    @GetMapping("/{id}/recommendations")
-    public List<VideoRecommendationDTO> getRecommendations(@PathVariable String id) {
-        return recommendationServiceCaller.getRecommendationsForVideo(Long.parseLong(id)).getRecommendations();
+    @PostMapping("/add")
+    public void addVideo(@RequestBody AddVideoDTO video) {
+        videoService.add(video.getTitle(), video.getUrl());
     }
 
-    @PostMapping("/{id}/addrecommendation")
-    public void addRecommendation(@PathVariable String id, @RequestBody AddRecommendationDTO recommendation) {
-        log.info("adding recommendation for Q " + id);
-        recommendationServiceCaller.addRecommendation(recommendation);
+    @DeleteMapping("/{id}/delete")
+    public void deleteVideo(@PathVariable Long id) {
+        videoService.delete(id);
     }
 
-    @DeleteMapping("/deleterecommendation/{id}")
-    public void deleteRecommendation(@PathVariable String id) {
-        recommendationServiceCaller.deleteRecommendation(Long.parseLong(id));
+    @PostMapping("/{videoId}/recommendation/add")
+    public void addRecommendation(@PathVariable Long videoId, @RequestBody AddRecommendationDTO recommendation) {
+        recommendationServiceCaller.add(recommendation, videoId);
+    }
+
+    @DeleteMapping("/recommendation/{id}/delete")
+    public void deleteRecommendation(@PathVariable Long id) {
+        recommendationServiceCaller.delete(id);
     }
 }
