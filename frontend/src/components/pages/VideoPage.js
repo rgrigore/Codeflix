@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import {UserContext} from "./UserContext";
-import RecommendationsContainer from "./RecommendationsContainer";
-import RecommendationForm from "./RecommendationForm";
+import {UserContext} from "../UserContext";
+import RecommendationsContainer from "../recommendation/RecommendationsContainer";
+import RecommendationForm from "../recommendation/RecommendationForm";
 
 const apiUrl = "http://localhost:8762";
 

@@ -1,8 +1,8 @@
 import React from "react";
 import {UserContextProvider} from "./components/UserContext";
 import {BrowserRouter, Route} from "react-router-dom";
-import HomePage from "./components/HomePage";
-import VideoPage from "./components/VideoPage";
+import HomePage from "./components/pages/HomePage";
+import VideoPage from "./components/pages/VideoPage";
 import Header from "./components/Header";
 
 import './App.css';
