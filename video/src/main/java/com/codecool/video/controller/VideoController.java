@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/videos")
+@Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class VideoController {
 
