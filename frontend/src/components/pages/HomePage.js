@@ -1,6 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react';
-import { Button } from "react-bootstrap";
-
 import { UserContext } from "../UserContext"
 import axios from "axios";
 import VideosContainer from "../video/VideosContainer";
@@ -28,11 +26,6 @@ function HomePage() {
 
 	return (
 		<div>
-			{ (userContext.jwt &&
-				<Button className="m-2" onClick={() => {localStorage.clear(); window.location.reload()}}>{userContext.name}</Button>)// ||
-				// <Login>login</Login>
-			}
-
 			<VideosContainer videos={videos} />
 		</div>
 	);
