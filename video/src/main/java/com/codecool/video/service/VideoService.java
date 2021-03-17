@@ -1,29 +1,51 @@
 package com.codecool.video.service;
 
+import com.codecool.video.exception.VideoNotFoundException;
 import com.codecool.video.model.Video;
+import com.codecool.video.model.VideoDTO;
 import com.codecool.video.repository.VideoRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
 @AllArgsConstructor
 public class VideoService {
-    private final VideoRepository videoRepository;
 
-    public List<Video> getAllVideos() {
+    private final VideoRepository videoRepository;
+    private final RecommendationServiceCaller recommendationServiceCaller;
+
+    public List<Video> getAll() {
         return videoRepository.findAll();
     }
 
-    public Video getVideo(Long id) {
-        Video video = Video.builder().id(null).name("").url("").build();
-        videoRepository.findById(id).ifPresent(v -> {video.setId(v.getId()); video.setName(v.getName()); video.setUrl(v.getUrl());});
-        return video;
+    public Optional<Video> get(Long id) {
+        return videoRepository.findById(id);
+    }
+
+    public VideoDTO getVideoDTO(Long id) {
+        return get(id).map(video ->
+                VideoDTO.builder()
+                        .video(video)
+                        .recommendations(recommendationServiceCaller.getRecommendationsForVideo(id))
+                        .build()
+        ).orElseThrow(VideoNotFoundException::new);
+    }
+
+    public void add(String title, String url) {
+        videoRepository.save(Video.builder()
+                .title(title)
+                .url(url)
+                .build()
+        );
+    }
+
+    public void delete(Long id) {
+        videoRepository.deleteById(id);
     }
 
     //Test data

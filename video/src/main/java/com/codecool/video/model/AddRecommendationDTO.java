@@ -1,12 +1,20 @@
 package com.codecool.video.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AddRecommendationDTO {
-    private String rating;
+    private int rating;
     private String comment;
-    private String videoId;
+    private Long videoId;
+
+    public AddRecommendationDTO setVideoId(Long videoId) {
+        this.videoId = videoId;
+        return this;
+    }
 }
