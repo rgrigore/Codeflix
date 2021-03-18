@@ -36,7 +36,7 @@ function VideoPage() {
 			<iframe title={video.title} width="1080" height="550" src={`https://www.youtube.com/embed/${video.url}`}
 			        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 			        frameBorder="2" allowFullScreen />
-			<RecommendationsContainer recommendations={recommendations} />
+			<RecommendationsContainer recommendations={recommendations} recCallback={getVideo} />
 			{ userContext.jwt &&
 				<RecommendationForm videoId={id} recCallback={getVideo} />
 			}
