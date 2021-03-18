@@ -26,7 +26,7 @@ function HomePage() {
 
 	return (
 		<div>
-			<VideosContainer videos={videos} />
+			<VideosContainer videos={videos} videoCallback={getVideos} />
 		</div>
 	);
 }

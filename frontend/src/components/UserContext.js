@@ -14,7 +14,7 @@ export const UserContext = createContext({
 export function UserContextProvider(props) {
 	const [id, setId] = useState(localStorage.getItem("userId") || -1);
 	const [name, setName] = useState(localStorage.getItem("userName") || null);
-	const [roles, setRoles] = useState(localStorage.getItem("roles") || null)
+	const [roles, setRoles] = useState(JSON.parse(localStorage.getItem("roles")) || [])
 	const [jwt, setJwt] = useState(localStorage.getItem("jwt") || null);
 
 	const saveId = id => {
@@ -27,7 +27,7 @@ export function UserContextProvider(props) {
 	}
 	const saveRoles = roles => {
 		setRoles(roles)
-		localStorage.setItem("roles", roles);
+		localStorage.setItem("roles", JSON.stringify(roles));
 	}
 	const saveJwt = jwt => {
 		setJwt(jwt);
