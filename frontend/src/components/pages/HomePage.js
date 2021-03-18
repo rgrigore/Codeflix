@@ -14,6 +14,7 @@ function HomePage() {
 	const [newVideoUrl, setNewVideoUrl] = useState("");
 
 	const getVideos = () => {
+		console.log(userContext);
 		axios.get(
 			`${apiUrl}/videos/all`,
 			{headers: { Authorization: `Bearer ${userContext.jwt}` }}
@@ -38,7 +39,7 @@ function HomePage() {
 	useEffect(() => {
 		getVideos();
 		// eslint-disable-next-line
-	}, []);
+	}, [userContext.jwt]);
 
 	return (
 		<div>

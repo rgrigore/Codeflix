@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserLoginResponseDto {
+    private Long id;
     private String username;
     private List<String> roles = new ArrayList<>();
     private String token;

@@ -27,7 +27,8 @@ function Register(props) {
 		).then(response => { // TODO Might need renaming
 			userContext.setId(response.data.id);
 			userContext.setName(response.data.username);
-			userContext.setJwt(response.data.jwt);
+			userContext.setRoles(response.data.roles);
+			userContext.setJwt(response.data.token);
 		}).catch(err => console.log(err));
 	}
 

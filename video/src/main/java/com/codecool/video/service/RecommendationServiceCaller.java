@@ -37,4 +37,8 @@ public class RecommendationServiceCaller {
     public void delete(Long id) {
         restTemplate.delete(baseUrl + "/delete/" + id);
     }
+
+    public void deleteForVideo(Long id) {
+        getRecommendationsForVideo(id).stream().map(Recommendation::getId).forEach(this::delete);
+    }
 }

@@ -23,7 +23,8 @@ function VideoCard(props) {
 
 	const userContext = useContext(UserContext);
 
-	const remove = () => {
+	const remove = (e) => {
+		e.stopPropagation();
 		axios.delete(
 			`${apiUrl}/videos/${props.video.id}/delete`,
 			{headers: { Authorization: `Bearer ${userContext.jwt}` }}
@@ -33,17 +34,19 @@ function VideoCard(props) {
 	}
 
 	return (
-		<Link to={`/video/${props.video.id}`}>
-			<Card className="d-flex bg-danger text-black p-1">
+		<div>
+			<Card className="d-flex bg-warning text-black p-1">
 				<Card.Body>
-					<Card.Title>{props.video.name}</Card.Title>
+					<Card.Title>{props.video.title}</Card.Title>
 					{ userContext.roles.includes("ROLE_ADMIN") &&
-						<Button variant={"danger"} onClick={remove}>X</Button>
+						<Button variant={"danger"} onClick={(e) => remove(e)}>X</Button>
 					}
 				</Card.Body>
-				<Card.Img variant={"bottom"} src={`http://img.youtube.com/vi/${props.video.url}/hqdefault.jpg`} style={imgStyle} />
+				<Link to={`/video/${props.video.id}`}>
+					<Card.Img variant={"bottom"} src={`http://img.youtube.com/vi/${props.video.url}/hqdefault.jpg`} style={imgStyle} />
+				</Link>
 			</Card>
-		</Link>
+		</div>
 	);
 }
 

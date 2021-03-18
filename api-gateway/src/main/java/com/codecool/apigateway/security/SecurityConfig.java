@@ -40,7 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(HttpMethod.OPTIONS, "/register").permitAll()
                     .antMatchers(HttpMethod.OPTIONS, "/videos/**").authenticated()
                     .antMatchers(HttpMethod.POST, "/videos/**").authenticated()
-                    .antMatchers(HttpMethod.GET, "/videos/**").authenticated()
+                    .antMatchers(HttpMethod.GET, "/videos/**").permitAll()
+                    .antMatchers(HttpMethod.POST, "/videos/add").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.OPTIONS, "/videos/**").hasRole("ADMIN")
+                    .antMatchers(HttpMethod.DELETE, "/videos/**").hasRole("ADMIN")
+//                    .antMatchers(HttpMethod.POST, "/videos/recommendation/**").hasRole("ADMIN")
                     .anyRequest().authenticated() // anything else is denied
                 .and()
                     .addFilterBefore(new JwtTokenFilter(jwtTokenService), UsernamePasswordAuthenticationFilter.class);
