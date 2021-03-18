@@ -21,7 +21,7 @@ function RecommendationItem(props) {
 			`${apiUrl}/videos/recommendation/${props.recommendation.id}/delete`,
 			{headers: { Authorization: `Bearer ${userContext.jwt}` }}
 		)
-			.then(() => props.recCallback)
+			.then(() => props.recCallback())
 			.catch(err => console.log(err));
 	}
 
