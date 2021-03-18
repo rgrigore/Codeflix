@@ -3,34 +3,41 @@ import React, {createContext, useState} from "react";
 export const UserContext = createContext({
 	id: -1,
 	name: null,
+	roles: [],
 	jwt: null,
 	setId: () => {},
 	setName: () => {},
+	setRoles: () => {},
 	setJwt: () => {}
 });
 
 export function UserContextProvider(props) {
 	const [id, setId] = useState(localStorage.getItem("userId") || -1);
 	const [name, setName] = useState(localStorage.getItem("userName") || null);
+	const [roles, setRoles] = useState(localStorage.getItem("roles") || null)
 	const [jwt, setJwt] = useState(localStorage.getItem("jwt") || null);
 
-	const saveId = (id) => {
+	const saveId = id => {
 		setId(id);
 		localStorage.setItem("userId", id);
 	}
-	const saveName = (name) => {
+	const saveName = name => {
 		setName(name);
 		localStorage.setItem("userName", name);
 	}
-	const saveJwt = (jwt) => {
+	const saveRoles = roles => {
+		setRoles(roles)
+		localStorage.setItem("roles", roles);
+	}
+	const saveJwt = jwt => {
 		setJwt(jwt);
 		localStorage.setItem("jwt", jwt);
 	}
 
 	return (
 		<UserContext.Provider value={{
-			id: id, name: name, jwt: jwt,
-			setId: saveId, setName: saveName, setJwt: saveJwt
+			id: id, name: name, roles: roles, jwt: jwt,
+			setId: saveId, setName: saveName, setRoles: saveRoles, setJwt: saveJwt
 		}}>
 			{props.children}
 		</UserContext.Provider>
