@@ -46,6 +46,7 @@ public class VideoService {
 
     public void delete(Long id) {
         videoRepository.deleteById(id);
+        recommendationServiceCaller.deleteForVideo(id);
     }
 
     //Test data

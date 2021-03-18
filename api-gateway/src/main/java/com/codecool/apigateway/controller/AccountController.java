@@ -17,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,7 @@ public class AccountController {
         try {
             DbUser user = DbUser.builder().username(form.getUsername())
                     .password(BCrypt.hashpw(form.getPassword(), BCrypt.gensalt(12)))
-                    .roles(Arrays.asList("ROLE_USER"))
+                    .roles(Collections.singletonList("ROLE_USER"))
                     .build();
             dbUserRepository.save(user);
             return ResponseEntity.ok("Account created!");
@@ -60,9 +61,11 @@ public class AccountController {
                     .stream()
                     .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toList());
+            Long id = dbUserRepository.findByUsername(username).map(DbUser::getId).orElseThrow(IllegalArgumentException::new);
             String token = jwtTokenService.createToken(username, roles);
 
             UserLoginResponseDto response = UserLoginResponseDto.builder()
+                    .id(id)
                     .username(username)
                     .roles(roles)
                     .token(token)

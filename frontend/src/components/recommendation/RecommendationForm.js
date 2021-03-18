@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from "react-rating-stars-component";
 import {Button} from "react-bootstrap";
 import axios from "axios";
+import {UserContext} from "../UserContext";
 
 const apiUrl = "http://localhost:8762";
 
@@ -12,6 +13,7 @@ RecommendationForm.propTypes = {
 };
 
 function RecommendationForm(props) {
+	const userContext = useContext(UserContext);
 
 	const [rating, setRating] = useState(0);
 	const [comment, setComment] = useState("");
@@ -24,7 +26,7 @@ function RecommendationForm(props) {
 				comment: comment,
 				videoId: props.videoId
 			},
-			{headers: { Authorization: `Bearer ${props.token}` }}
+			{headers: { Authorization: `Bearer ${userContext.jwt}` }}
 		).then(() => {
 			document.getElementById("comment-input").value = "";
 			props.recCallback();

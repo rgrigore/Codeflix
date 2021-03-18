@@ -26,7 +26,7 @@ export function UserContextProvider(props) {
 		localStorage.setItem("userName", name);
 	}
 	const saveRoles = roles => {
-		setRoles(roles)
+		setRoles(roles);
 		localStorage.setItem("roles", JSON.stringify(roles));
 	}
 	const saveJwt = jwt => {
