@@ -14,7 +14,6 @@ function HomePage() {
 	const [newVideoUrl, setNewVideoUrl] = useState("");
 
 	const getVideos = () => {
-		console.log(userContext);
 		axios.get(
 			`${apiUrl}/videos/all`,
 			{headers: { Authorization: `Bearer ${userContext.jwt}` }}

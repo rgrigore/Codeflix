@@ -17,13 +17,15 @@ function Header() {
 			<Link to={"/home"}>
 				<img alt={"logo"} src={netflix_logo} style={{
 					height: 'auto',
-					maxHeight: '170px',
+					maxHeight: '250px',
 					width: 'auto',
-					maxWidth: '170px'
+					maxWidth: '250px'
 				}} />
 			</Link>
 			{ (userContext.jwt &&
-				<Button className="m-2" onClick={() => {localStorage.clear(); window.location.reload()}}>{userContext.name}</Button>
+				<div>
+					<Button className="m-2" onClick={() => {localStorage.clear(); window.location.reload()}}>{userContext.name}</Button>
+				</div>
 			) || ( isLoginForm &&
 				<Login switchAuthentication={() => setIsLoginForm(false)} />
 			) ||

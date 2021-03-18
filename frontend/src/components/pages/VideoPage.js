@@ -33,7 +33,6 @@ function VideoPage() {
 	return (
 		<div>
 			<h3 style={{ color: '#00FFFF' }} className={'mt-5 mb-3'}>{video.title}</h3>
-			{console.log(video)}
 			<iframe title={video.title} width="1080" height="550" src={`https://www.youtube.com/embed/${video.url}`}
 			        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 					frameBorder="2" allowFullScreen />

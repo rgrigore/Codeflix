@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import PropTypes from "prop-types";
-import {Button} from "react-bootstrap";
+import {Alert, Button} from "react-bootstrap";
 import axios from "axios";
 import {UserContext} from "../UserContext";
 
@@ -16,6 +16,7 @@ function Login(props) {
 
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const [error, setError] = useState(false);
 
 	const submit = () => {
 		axios.post(
@@ -29,7 +30,7 @@ function Login(props) {
 			userContext.setName(response.data.username);
 			userContext.setRoles(response.data.roles);
 			userContext.setJwt(response.data.token);
-		}).catch(err => console.log(err));
+		}).catch(err => {console.log(err); setError(true);});
 	}
 
 	return (
@@ -42,6 +43,13 @@ function Login(props) {
 
 				<Button type="button" className="mt-2" onClick={submit}>Login</Button><br/>
 				<Button variant={"link"} onClick={props.switchAuthentication}>Don't have an account? Register</Button>
+				{ (error &&
+					<div className={'p-2'}>
+						<Alert variant={"danger"} style={{maxWidth: "300px", marginLeft: "470px"}}>
+							Wrong user or password!
+						</Alert>
+					</div>
+				)}
 			</div>
 		</div>
 	);
