@@ -80,15 +80,10 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This is an exciting roguelike strategy game for all the fans out there, like the classic version that started in the 70’s and on.
+Placeholder
 
 Here's why:
-* You are the main hero of the story.
-* The main hero has to face enemies as Skeleton and Ghosts. 
-* The game is not turn based, so the enemies move individually and even chase the main hero.
-* Enemies can be defeated by direct battle.
-* There are 2 maps that the hero has to complete in order to reach the endpoint and win.
-* Keep in mind that there are items to collect in order to boost you up, but some are dangerous, and the hero should avoid in order not to create damage.
+* Placeholder
 
 ### Built With
 
@@ -180,16 +175,8 @@ Razvan Grigore - [@My Github](https://github.com/rgrigore) [@My Linkedin](https:
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-* [Software testing](/pages/general/software-testing)
-* [Positive or negative](https://stackoverflow.com/questions/8162423)
-* [How to design classes](/pages/java/how-to-design-classes)
-* [Introduction to jdbc](/pages/java/introduction-to-jdbc)
-* [jdbc basics](https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html)
-* [DAO pattern in Java](https://www.baeldung.com/java-dao-pattern)
-* [Serialization in Java](/pages/java/serialization-in-java)
-* [Compare two popular serialization framwork](https://www.baeldung.com/jackson-vs-gson)
-* [1-Bit Pack by Kenney - Graphic Tiles](https://kenney.nl/assets/bit-pack)
-* [CC0 1.0 Universal license](https://creativecommons.org/publicdomain/zero/1.0/)
+* [Spring Documentation](https://docs.spring.io/)
+* [React Documentation](https://reactjs.org/)
 * [Codecool Romania :thumbsup:](https://codecool.com/ro/)
 * [Img Shields](https://shields.io)
 
