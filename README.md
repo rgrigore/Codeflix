@@ -30,13 +30,13 @@
 <br />
 <p align="center">
   <a href="https://github.com/rgrigore/Codeflix.git">
-    <img src="frontend/src/images/netflix-logo-png-transparent.png" alt="Logo" width="300">
+    <img src="frontend/src/images/netflix-logo-png-transparent.png" alt="Logo" width="400">
   </a>
 
 <h3 align="center">Dungeon Crawl</h3>
 
   <p align="center">
-    An awesome PC roguelike game!
+    An awesome roguelike game!
     <br />
     <a href="https://github.com/rgrigore/Codeflix.git"><strong>Explore the docs »</strong></a>
     <br />
@@ -80,10 +80,14 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Placeholder
+This is a platform for listing educational videos about programming along with recommendations from users.
 
-Here's why:
-* Placeholder
+Features:
+* Able to index Youtube videos.
+* Individual user accounts with assigned roles.
+* Users able to post comments with ratings for videos.
+* Admin sections for managing videos and comments.
+* Microservices architecture allows complete modularity between services.
 
 ### Built With
 
@@ -141,10 +145,24 @@ All prerequisites must be installed, accordingly to the technologies used in thi
 
 Further we will shortly name, describe and visualize some main features of the app.
 
-### Placeholder section
-* Placeholder instruction
+### Home page
+* This is the home page of the app with options for login/register options and a list of videos.
 
-[![placeholder image][register-png]]()
+[![home page image][home-png]]()
+
+### Video page
+* Page for each individual video.
+
+[![video-page][video-png]]()
+
+* It also contains a recommendations section.
+
+[![recommendations][comments-png]]()
+
+### Eureka server
+* Server for registering all the microservices of the app.
+
+[![eureka server][eureka-png]]()
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -200,5 +218,8 @@ Razvan Grigore - [@My Github](https://github.com/rgrigore) [@My Linkedin](https:
 [linkedin-razvan-shield]: https://img.shields.io/twitter/url?label=Linkedin%20-%20Razvan&logo=LINKEDIN&style=social&url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Frazvan-grigore-978751157
 [linkedin-razvan-url]: https://www.linkedin.com/in/razvan-grigore-978751157
 <!-- IMAGES -->
-[register-png]: readme-graphics/register.png
+[home-png]: readme-graphics/home.png
+[video-png]: readme-graphics/video.png
+[comments-png]: readme-graphics/comments.png
+[eureka-png]: readme-graphics/eureka.png
 [agile]: readme-graphics/agile-logo.png
