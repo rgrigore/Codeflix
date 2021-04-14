@@ -36,7 +36,7 @@
 <h3 align="center">Dungeon Crawl</h3>
 
   <p align="center">
-    An awesome roguelike game!
+    A platform for programming video tutorials.
     <br />
     <a href="https://github.com/rgrigore/Codeflix.git"><strong>Explore the docs »</strong></a>
     <br />
